@@ -11,4 +11,5 @@ urlpatterns = patterns('',
         template_name="detail.html"), name='home'),
     url(r'^places/', include('campgrounds.places.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'', include('social_auth.urls')),
 )
