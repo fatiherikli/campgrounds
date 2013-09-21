@@ -1,20 +1,25 @@
 from django.conf import settings
-from django.db import models
+from django.contrib.gis.db import models
 from django.utils.encoding import smart_unicode
 
 
 class Campground(models.Model):
     """Holds camp areas"""
     title = models.CharField(max_length=255)
-    city = models.CharField()
-    location = models.TextField()
+    slug = models.SlugField()
+    city = models.CharField(max_length=255)
+    location = models.PointField()
     address = models.TextField(blank=True, null=True)
     directions = models.TextField(blank=True, null=True)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to="uploads", blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def __unicode__(self):
         return smart_unicode(self.title)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return 'place-detail', [self.slug]
 
 
 class Rating(models.Model):
@@ -31,7 +36,7 @@ class Rating(models.Model):
 class Photo(models.Model):
     """Holds photos of a campground"""
     title = models.CharField(max_length=255)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(upload_to="uploads", blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def __unicode__(self):

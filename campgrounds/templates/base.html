@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Burada Kalınır</title>
+  <script src='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
+  <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+  <!--[if lte IE 8]>
+    <link href='//api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.ie.css' rel='stylesheet'>
+  <![endif]-->
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/screen.css" />
+</head>
+<body>
+{% block header %}
+<header>
+    <h1>burada<i>kalınır</i></h1>
+</header>
+{% endblock %}
+{% block content %}
+{% endblock %}
+<script type="text/template" id="marker-template">
+    <div id="place-marker">
+        <div>
+            <img width="100px" src="<%= image %>" alt=""/>
+        </div>
+        <h3><a href="<%= url %>"><%= title %></a></h3>
+    </div>
+</script>
+<script type="text/javascript">
+    window.campgrounds = {
+    }; // namespace definition
+</script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://underscorejs.org/underscore.js"></script>
+<script src="http://backbonejs.org/backbone.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&sensor=true"></script>
+<script src="{{ STATIC_URL }}js/places/views.js"></script>
+<script src="{{ STATIC_URL }}js/places/models.js"></script>
+<script type="text/javascript">
+  $(function () {
+      var places = new campgrounds.PlaceList();
+      new campgrounds.MapView({
+          marker_template: "#marker-template",
+          el: "#map",
+          model: places,
+          latitude: 41.103661,
+          longitude: 29.135625
+      }).render();
+      places.fetch();
+  });
+</script>
+</body>
+</html>
