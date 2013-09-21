@@ -122,9 +122,15 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'django_extensions',
+    'markitup',
 
     'campgrounds.places',
 )
+
+
+MARKITUP_SET = 'markitup/sets/markdown'
+MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
+
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
@@ -156,3 +162,8 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from settings_local import *
+except ImportError:
+    print "settings_local not found."

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body-id %}index{% endblock %}
+
+{% block content %}
+<div id='map'></div>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(function () {
+        var places = new campgrounds.PlaceList();
+
+        new campgrounds.MapView({
+            marker_template: "#marker-template",
+            el: "#map",
+            model: places,
+            latitude: 41.103661,
+            longitude: 29.135625
+        }).render();
+
+        places.fetch();
+    });
+</script>
+{% endblock %}

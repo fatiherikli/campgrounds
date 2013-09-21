@@ -14,7 +14,7 @@ header {
     background: rgba(255, 255, 255, 0.94);
     height: 55px;
     box-shadow: 0 0 5px #888888;
-    position: absolute;
+    position: fixed;
     left: 50%;
     margin-left: -400px;
     width: 800px;
@@ -22,10 +22,16 @@ header {
 }
 
     header h1 {
-        margin: 5px 30px;
+        margin: 0 20px;
+        padding-top: 9px;
+        padding-bottom: 0;
         font-size: 35px;
-        color: #797979;
     }
+
+        header h1 a {
+            color: #797979;
+            text-decoration: none;
+        }
 
         header h1 i {
             font-style: normal;
@@ -35,4 +41,66 @@ header {
 #map {
     width: 100%;
     height: 100%;
+}
+
+#detail-map {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 800px;
+    height: 300px;
+}
+
+section.content {
+    background: white;
+    width: 800px;
+    margin: auto;
+    padding-top: 5px;
+}
+
+    section.content h1,
+    section.content h3 {
+        margin: 0 10px;
+        padding: 20px 10px;
+    }
+
+    section.content h1 {
+        color: gray;
+        padding-bottom: 4px;
+    }
+
+    section.content h3 {
+        color: #4c4c4c;
+        font-size: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    section.content .place-photo img {
+        width: 800px;
+    }
+
+    section.content p:first-child {
+        margin-top: 9px;
+    }
+
+    section.content .description {
+        margin-bottom: 10px;
+    }
+
+    section.content p {
+        margin: 9px 20px 2px;
+        color: #515151;
+        width: 600px;
+        padding: 0 0 10px;
+        line-height: 1.5em;
+    }
+
+    section.content .description a {
+        color: #449b4c;
+    }
+
+body#place-detail header {
+    position: static;
+    margin: auto;
+    box-shadow: none;
 }

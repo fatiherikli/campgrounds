@@ -2,6 +2,8 @@ from django.conf import settings
 from django.contrib.gis.db import models
 from django.utils.encoding import smart_unicode
 
+from markitup.fields import MarkupField
+
 
 class Campground(models.Model):
     """Holds camp areas"""
@@ -10,6 +12,7 @@ class Campground(models.Model):
     city = models.CharField(max_length=255)
     location = models.PointField()
     address = models.TextField(blank=True, null=True)
+    description = MarkupField()
     directions = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="uploads", blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)

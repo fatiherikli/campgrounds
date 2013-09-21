@@ -9,7 +9,7 @@ campgrounds.MapView = Backbone.View.extend({
                 this.options.latitude,
                 this.options.longitude
             ),
-            zoom: 10,
+            zoom: this.options.zoom || 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
     },
@@ -27,8 +27,9 @@ campgrounds.MapView = Backbone.View.extend({
             place, $(this.options.marker_template).html());
 
         google.maps.event.addListener(marker, 'click', function() {
-            info_window.open(this.map, marker);
-        });
+            window.location = place.get('url');
+            // info_window.open(this.map, marker);
+        }.bind(this));
 
         return marker;
     },

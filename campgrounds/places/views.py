@@ -31,4 +31,6 @@ class CampgroundList(JSONResponseMixin, ListView):
 
 
 class CampgroundDetail(DetailView):
+    template_name = "places/detail.html"
     model = Campground
+    context_object_name = "place"

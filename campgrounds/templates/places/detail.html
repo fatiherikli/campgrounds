@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block body-id %}place-detail{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="place-photo">
+        <img src="{{ place.image.url }}" alt="{{ place.title }}"/>
+    </div>
+    <h1>{{ place.city }}</h1>
+    <h3>{{ place.title }}</h3>
+    <div class="description">
+        {{ place.description }}
+    </div>
+    <h3>Kamp Alanı</h3>
+    <div id='detail-map'></div>
+    <h3>Nasıl Ulaşırım</h3>
+    <p>{{ place.directions }}</p>
+
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(function () {
+        var places = new campgrounds.PlaceList();
+
+        new campgrounds.MapView({
+            marker_template: "#marker-template",
+            el: "#detail-map",
+            model: places,
+            latitude: {{ place.location.y }},
+            longitude: {{ place.location.x }},
+            zoom: 15
+        }).render();
+
+        places.add({
+            "title": "{{ place.title }}",
+            "image": "{{ place.image.url }}",
+            "url": "#",
+            "coordinates": {
+                "latitude": "{{ place.location.y }}",
+                "longitude": "{{ place.location.x }}"
+            }
+        });
+    });
+</script>
+{% endblock %}
