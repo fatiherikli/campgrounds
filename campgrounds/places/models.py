@@ -16,6 +16,7 @@ class Campground(models.Model):
     directions = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="uploads", blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    features = models.ManyToManyField('places.Feature', blank=True)
 
     def __unicode__(self):
         return smart_unicode(self.title)
@@ -23,6 +24,14 @@ class Campground(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return 'place-detail', [self.slug]
+
+
+class Feature(models.Model):
+    name = models.CharField(max_length=255)
+    icon = models.ImageField(upload_to="icons", blank=True, null=True)
+
+    def __unicode__(self):
+        return smart_unicode(self.name)
 
 
 class Rating(models.Model):
