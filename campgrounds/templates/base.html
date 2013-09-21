@@ -14,6 +14,14 @@
 {% block header %}
 <header>
     <h1><a href="/">burada<i>kalınır</i></a></h1>
+    <nav>
+        {% if user.is_authenticated %}
+        merhaba {{ user }}
+        {% else %}
+        <a href="{% url 'socialauth_begin' 'twitter' %}">
+            <img src="{{ STATIC_URL }}images/login-via-twitter.png" alt="login via twitter"/></a>
+        {% endif %}
+    </nav>
 </header>
 {% endblock %}
 {% block content %}

@@ -26,6 +26,7 @@ header {
         padding-top: 9px;
         padding-bottom: 0;
         font-size: 35px;
+        float: left;
     }
 
         header h1 a {
@@ -37,6 +38,12 @@ header {
             font-style: normal;
             color: #8fcc5d;
         }
+
+    header nav {
+        float: right;
+        padding: 21px 10px 0;
+        margin-right: 10px;
+    }
 
 #map {
     width: 100%;
