@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load map_tags %}
+
 {% block body-id %}place-detail{% endblock %}
 
 {% block content %}
@@ -36,8 +38,8 @@
             marker_template: "#marker-template",
             el: "#detail-map",
             model: places,
-            latitude: {{ place.location.y }},
-            longitude: {{ place.location.x }},
+            latitude: {{ place.location.y|replace_comma }},
+            longitude: {{ place.location.x|replace_comma }},
             zoom: 15
         }).render();
 
@@ -46,8 +48,8 @@
             "image": "{{ place.image_url }}",
             "url": "#",
             "coordinates": {
-                "latitude": "{{ place.location.y }}",
-                "longitude": "{{ place.location.x }}"
+                "latitude": {{ place.location.y|replace_comma }},
+                "longitude": {{ place.location.x|replace_comma }}
             }
         });
     });
