@@ -3,6 +3,7 @@ from django.contrib.gis.db import models
 from django.utils.encoding import smart_unicode
 
 from markitup.fields import MarkupField
+from campgrounds.places.managers import ActiveManager
 
 
 class Campground(models.Model):
@@ -11,12 +12,14 @@ class Campground(models.Model):
     slug = models.SlugField()
     city = models.CharField(max_length=255)
     location = models.PointField()
-    address = models.TextField(blank=True, null=True)
     description = MarkupField()
     directions = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="uploads", blank=True, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     features = models.ManyToManyField('places.Feature', blank=True)
+    is_active = models.BooleanField(default=False)
+
+    objects = ActiveManager()
 
     def __unicode__(self):
         return smart_unicode(self.title)
@@ -24,6 +27,13 @@ class Campground(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return 'place-detail', [self.slug]
+
+    @property
+    def image_url(self):
+        try:
+            return self.image.url
+        except ValueError:
+            return ""
 
 
 class Feature(models.Model):

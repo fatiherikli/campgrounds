@@ -4,9 +4,11 @@
 
 {% block content %}
 <section class="content">
+    {% if place.image %}
     <div class="place-photo">
         <img src="{{ place.image.url }}" alt="{{ place.title }}"/>
     </div>
+    {% endif %}
     <h1>{{ place.city }}</h1>
     <h3>{{ place.title }}</h3>
     <div class="description">
@@ -41,7 +43,7 @@
 
         places.add({
             "title": "{{ place.title }}",
-            "image": "{{ place.image.url }}",
+            "image": "{{ place.image_url }}",
             "url": "#",
             "coordinates": {
                 "latitude": "{{ place.location.y }}",

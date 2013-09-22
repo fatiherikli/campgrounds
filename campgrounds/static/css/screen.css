@@ -73,6 +73,11 @@ header {
     height: 300px;
 }
 
+#select-point-map {
+    width: 755px;
+    height: 300px;
+}
+
 section.content {
     background: white;
     width: 800px;
@@ -143,3 +148,34 @@ body#place-detail header {
     margin: auto;
     box-shadow: none;
 }
+
+form input,
+form textarea {
+    font-size: 20px;
+    font-family: helvetica, sans-serif;
+}
+
+form#new-place {
+    margin: 10px 2px;
+}
+
+    form#new-place label {
+        display: block;
+    }
+
+    form#new-place #id_title,
+    form#new-place #id_city {
+        width: 200px;
+        padding: 4px;
+    }
+
+    form#new-place #id_directions {
+        width: 400px;
+        height: 100px;
+        padding: 5px;
+    }
+
+    form#new-place #submit {
+        margin-left: 20px;
+        margin-bottom: 40px;
+    }

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block body-id %}place-detail{% endblock %}
+
+{% block content %}
+<section class="content">
+    <form id="new-place" action="{% url 'new-place' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input id="submit" type="submit" value="Gönder"/>
+    </form>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+    $(function () {
+        new campgrounds.SelectPointView({
+            replace: "#id_location",
+            latitude: 41.103661,
+            longitude: 29.135625,
+            zoom: 10
+        }).render();
+    });
+</script>
+{% endblock %}

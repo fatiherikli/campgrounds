@@ -17,7 +17,7 @@
     <nav>
         {% if user.is_authenticated %}
         <ul>
-            <li><a href="#">yeni ekle</a></li>
+            <li><a href="{% url 'new-place' %}">yeni ekle</a></li>
             <li><a href="{% url 'logout' %}">çıkış yap</a></li>
         </ul>
         {% else %}
@@ -45,7 +45,7 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://underscorejs.org/underscore.js"></script>
 <script src="http://backbonejs.org/backbone.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&sensor=true"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&sensor=true&libraries=drawing"></script>
 <script src="{{ STATIC_URL }}js/places/views.js"></script>
 <script src="{{ STATIC_URL }}js/places/models.js"></script>
 {% block javascripts %}{% endblock %}
