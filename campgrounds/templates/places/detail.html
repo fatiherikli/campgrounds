@@ -10,6 +10,11 @@
     <h3>{{ place.title }}</h3>
     {% if place.image %}
     <div class="place-photo">
+        <ul class="features">
+            {% for feature in place.features.all %}
+                <li style="background-color: {{ feature.color }};">{{ feature.name }}</li>
+            {% endfor %}
+        </ul>
         <img src="{{ place.image.url }}" alt="{{ place.title }}"/>
     </div>
     {% endif %}
@@ -29,11 +34,6 @@
 
 <section class="content" id="place-features">
 <h3>Alan Özellikleri</h3>
-<ul class="features">
-    {% for feature in place.features.all %}
-        <li>{{ feature.name }}</li>
-    {% endfor %}
-</ul>
 </section>
 
 {% endblock %}

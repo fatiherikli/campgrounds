@@ -82,6 +82,7 @@ section.content {
     background: white;
     width: 800px;
     margin: 20px auto;
+    padding-top: 10px;
 }
 
     section.content h1,
@@ -132,9 +133,12 @@ section.content {
     }
 
     section.content ul.features {
-        margin: 10px 20px;
+        position: absolute;
+        margin: 70px 20px 0 585px;
         padding: 0 0 30px;
         overflow: hidden;
+        float: left;
+        width: 200px;
     }
 
     section.content ul.features li {
@@ -142,9 +146,11 @@ section.content {
         background: #87b341;
         color: white;
         padding: 10px;
-        width: 205px;
+        /*width: 205px;*/
         margin: 5px;
-        float: left;
+        text-align: right;
+        float: right;
+        box-shadow: 0 2px 0 #fff;
     }
 
     section.content hr {
@@ -179,6 +185,7 @@ section.content {
     }
 
     section.content#place-info {
+        padding-top: 0;
         padding-bottom: 5px;
     }
 

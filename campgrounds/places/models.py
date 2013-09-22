@@ -39,6 +39,7 @@ class Campground(models.Model):
 class Feature(models.Model):
     name = models.CharField(max_length=255)
     icon = models.ImageField(upload_to="icons", blank=True, null=True)
+    color = models.CharField(max_length=255, blank=True, null=True)
 
     def __unicode__(self):
         return smart_unicode(self.name)
