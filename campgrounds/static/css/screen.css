@@ -81,8 +81,7 @@ header {
 section.content {
     background: white;
     width: 800px;
-    margin: auto;
-    padding-top: 5px;
+    margin: 20px auto;
 }
 
     section.content h1,
@@ -94,13 +93,18 @@ section.content {
     section.content h1 {
         color: gray;
         padding-bottom: 4px;
+        font-size: 30px;
     }
 
     section.content h3 {
         color: #4c4c4c;
-        font-size: 30px;
+        font-size: 35px;
         padding-top: 0;
         padding-bottom: 0;
+    }
+
+    section.content .place-photo {
+        margin-top: 15px;
     }
 
     section.content .place-photo img {
@@ -108,7 +112,7 @@ section.content {
     }
 
     section.content p:first-child {
-        margin-top: 9px;
+        margin-top: 20px;
     }
 
     section.content .description {
@@ -141,6 +145,46 @@ section.content {
         width: 205px;
         margin: 5px;
         float: left;
+    }
+
+    section.content hr {
+        margin: 20px 10px;
+        padding: 0;
+        border: none;
+        border-top: medium double #a7a7a7;
+        color: #333;
+        text-align: center;
+    }
+
+    section.content hr:after {
+        content: "§";
+        display: inline-block;
+        position: relative;
+        margin-left: -20px;
+        top: -0.7em;
+        font-size: 1.5em;
+        padding: 0 0.25em;
+        background: white;
+        color: #5a5a5a;
+    }
+
+    section.content#transport-map {
+        margin-top: 30px;
+        padding-top: 15px;
+    }
+
+    section.content#transport-directions {
+        padding-top: 20px;
+        padding-bottom: 8px;
+    }
+
+    section.content#place-info {
+        padding-bottom: 5px;
+    }
+
+    section.content#place-features {
+        padding-top: 20px;
+        margin-bottom: 40px;
     }
 
 body#place-detail header {

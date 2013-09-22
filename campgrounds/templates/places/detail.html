@@ -5,28 +5,37 @@
 {% block body-id %}place-detail{% endblock %}
 
 {% block content %}
-<section class="content">
+<section class="content" id="place-info">
+    <h1>{{ place.city }}</h1>
+    <h3>{{ place.title }}</h3>
     {% if place.image %}
     <div class="place-photo">
         <img src="{{ place.image.url }}" alt="{{ place.title }}"/>
     </div>
     {% endif %}
-    <h1>{{ place.city }}</h1>
-    <h3>{{ place.title }}</h3>
     <div class="description">
         {{ place.description }}
     </div>
+</section>
+<section class="content" id="transport-map">
     <h3>Kamp Alanı</h3>
     <div id='detail-map'></div>
-    <h3>Nasıl Ulaşırım</h3>
-    <p>{{ place.directions }}</p>
-    <h3>Alan Özellikleri</h3>
-    <ul class="features">
-        {% for feature in place.features.all %}
-            <li>{{ feature.name }}</li>
-        {% endfor %}
-    </ul>
 </section>
+
+<section class="content" id="transport-directions">
+<h3>Nasıl Ulaşırım</h3>
+    <p>{{ place.directions }}</p>
+</section>
+
+<section class="content" id="place-features">
+<h3>Alan Özellikleri</h3>
+<ul class="features">
+    {% for feature in place.features.all %}
+        <li>{{ feature.name }}</li>
+    {% endfor %}
+</ul>
+</section>
+
 {% endblock %}
 
 {% block javascripts %}
