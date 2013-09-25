@@ -1,19 +1,21 @@
 from django import forms
-from django.utils.text import slugify
 
 from campgrounds.places.models import Campground, Feature
 
 
-class NewCampgroundView(forms.ModelForm):
+class NewCampgroundForm(forms.ModelForm):
     features = forms.ModelMultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
-        queryset=Feature.objects.all())
+        queryset=Feature.objects.all(),
+        required=False)
 
     class Meta:
         model = Campground
         fields = (
-            "title", "city", "location", "directions", "image", "features")
+            "title", "city", "location", "directions", "description", "image",
+            "features")
 
     def save(self, commit=True):
-        self.instance.slug = slugify(self.instance.title)
-        return super(NewCampgroundView, self).save(commit)
+        slug = Campground.unique_slug(self.instance.title)
+        self.instance.slug = slug
+        return super(NewCampgroundForm, self).save(commit)

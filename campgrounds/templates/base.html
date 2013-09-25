@@ -27,6 +27,13 @@
         {% endif %}
     </nav>
 </header>
+{% if messages %}
+<ul class="info-messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock %}
 {% block content %}
 {% endblock %}

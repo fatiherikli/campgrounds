@@ -1,10 +1,12 @@
+# coding=utf-8
 import json
 from itertools import imap
+from django.contrib import messages
 
 from django.templatetags.static import static
 from django.views.generic import ListView, DetailView, CreateView
-from campgrounds.places.forms import NewCampgroundView
 
+from campgrounds.places.forms import NewCampgroundForm
 from campgrounds.places.mixins import JSONResponseMixin
 from campgrounds.places.models import Campground
 
@@ -44,9 +46,12 @@ class CampgroundDetail(DetailView):
 
 class NewCampground(CreateView):
     model = Campground
-    form_class = NewCampgroundView
+    form_class = NewCampgroundForm
     template_name = "places/new.html"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.info(self.request, 'Kamp alanı başarıyla eklendi. Editörler '
+                                    'tarafından onaylandıktan sonra harita '
+                                    'üzerinde gözükecektir. Teşekkür ederiz.')
         return super(NewCampground, self).form_valid(form)
