@@ -32,9 +32,23 @@
     <p>{{ place.directions }}</p>
 </section>
 
-<section class="content" id="place-features">
-<h3>Alan Özellikleri</h3>
+<section class="content" id="people">
+<h3>Topluluk</h3>
+<div class="added-by">
+    <h4>Bu alanı ekleyen</h4>
+    <a href="#">
+        <img src="{{ place.user.gravatar }}" alt=""/>
+        <br/>
+        {{ place.user.get_full_name }}
+    </a>
+
+</div>
+<div class="people-who-stay">
+
+</div>
 </section>
+
+<footer>hello foo bar</footer>
 
 {% endblock %}
 

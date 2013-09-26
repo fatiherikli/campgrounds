@@ -125,7 +125,10 @@ INSTALLED_APPS = (
     'social_auth',
 
     'campgrounds.places',
+    'campgrounds.profiles',
 )
+
+AUTH_USER_MODEL = 'profiles.Profile'
 
 MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
@@ -134,6 +137,7 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
 
 TWITTER_CONSUMER_KEY = 'NmeOXzxQksN6tCeqtBexA'
 TWITTER_CONSUMER_SECRET = 'tmFoGX5A2U4F9x2tzCLORgLHQsDcL1po6MsklyYJsw'

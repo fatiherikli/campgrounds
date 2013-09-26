@@ -207,6 +207,43 @@ section.content {
         margin-bottom: 40px;
     }
 
+    section.content#people {
+        padding-top: 20px;
+        padding-bottom: 30px;
+    }
+
+    section.content#people .added-by {
+        margin: 10px 30px;
+        border-right: 1px dashed #e0e0e0;
+        width: 150px;
+    }
+
+    section.content#people .added-by img {
+        margin-bottom: 5px;
+    }
+
+    section.content#people .added-by h4 {
+        color: #464646;
+        font-size: 17px;
+    }
+
+    section.content#people .added-by a {
+        display: block;
+        width: 125px;
+        text-align: center;
+        text-decoration: none;
+        color: gray;
+    }
+
+footer {
+    width: 740px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    color: gray;
+    border-top: 10px solid darkseagreen;
+}
+
 body#place-detail header {
     position: static;
     margin: auto;
