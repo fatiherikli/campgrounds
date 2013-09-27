@@ -1,11 +1,14 @@
 # coding=utf-8
 from django.conf import settings
 from django.contrib.gis.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils.encoding import smart_unicode
 from django.utils.text import slugify
 
 from markitup.fields import MarkupField
 from campgrounds.places.managers import ActiveManager
+from campgrounds.profiles.constants import NOTIFICATION_TYPE_APPROVAL
 
 
 class Campground(models.Model):
@@ -85,3 +88,13 @@ class Photo(models.Model):
 
     def __unicode__(self):
         return smart_unicode(self.title)
+
+
+@receiver(post_save, sender=Campground)
+def send_approval_notification(instance, created, **kwargs):
+    """Sends approval notification to the sender of campground"""
+    if not created:
+        instance.user.notifications.get_or_create(
+            notification_type=NOTIFICATION_TYPE_APPROVAL,
+            object_id=instance.id
+        )
