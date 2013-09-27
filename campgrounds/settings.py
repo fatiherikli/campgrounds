@@ -128,7 +128,7 @@ INSTALLED_APPS = (
     'campgrounds.profiles',
 )
 
-AUTH_USER_MODEL = 'profiles.Profile'
+AUTH_USER_MODEL = 'profiles.User'
 
 MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})

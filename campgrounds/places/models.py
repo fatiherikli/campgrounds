@@ -20,11 +20,15 @@ class Campground(models.Model):
     image = models.ImageField(
         upload_to="uploads", blank=True, null=True,
         verbose_name="Kapak Fotoğrafı")
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="campgrounds")
     features = models.ManyToManyField(
         "places.Feature", blank=True, null=True, verbose_name="Özellikler",
         help_text="Markdown formatında yazabilirsiniz.")
     is_active = models.BooleanField(default=False)
+    people_who_stay = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        verbose_name="Burada Kalanlar")
 
     objects = ActiveManager()
 

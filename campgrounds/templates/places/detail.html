@@ -33,22 +33,43 @@
 </section>
 
 <section class="content" id="people">
+
 <h3>Topluluk</h3>
+
+    <form action="." id="stay-form" method="post">
+        {% csrf_token %}
+        <input type="submit" class="submit" name="stay"
+               value="{% if user in place.people_who_stay.all %}Topluluktan Ayrıl{% else %}Burada Kaldım{% endif %}"/>
+    </form>
+
 <div class="added-by">
-    <h4>Bu alanı ekleyen</h4>
-    <a href="#">
+    <h4>Burayı ekleyen</h4>
+    <a class="profile" href="#">
         <img src="{{ place.user.gravatar }}" alt=""/>
         <br/>
         {{ place.user.get_full_name }}
     </a>
-
 </div>
 <div class="people-who-stay">
-
+    <h4>Burada Kalmış Olanlar</h4>
+    <ul>
+        {% for user in place.people_who_stay.all %}
+        <li>
+            <a class="profile" href="#">
+                <img src="{{ user.gravatar }}" alt=""/>
+                <br/>
+                {{ user.get_full_name }}
+            </a>
+        </li>
+        {% empty %}
+        <li>Henüz bu toplulukta kimse yok.</li>
+        {% endfor %}
+    </ul>
 </div>
 </section>
 
-<footer>hello foo bar</footer>
+<footer>Buradakalinir.com içeriği kullanıcılar tarafından hazırlanmaktadır.
+</footer>
 
 {% endblock %}
 

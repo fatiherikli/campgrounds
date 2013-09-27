@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 
 
-class Profile(AbstractUser):
+class User(AbstractUser):
 
     full_name = property(AbstractUser.get_full_name)
 

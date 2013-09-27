@@ -210,29 +210,71 @@ section.content {
     section.content#people {
         padding-top: 20px;
         padding-bottom: 30px;
+        overflow: hidden;
     }
 
     section.content#people .added-by {
-        margin: 10px 30px;
+        margin: 20px 30px;
         border-right: 1px dashed #e0e0e0;
         width: 150px;
+        float: left;
     }
 
-    section.content#people .added-by img {
+    section.content#people a.profile img {
         margin-bottom: 5px;
     }
 
-    section.content#people .added-by h4 {
+    section.content#people h4 {
         color: #464646;
         font-size: 17px;
+        padding-top: 0;
+        margin-top: 0;
     }
 
-    section.content#people .added-by a {
+    section.content#people a.profile {
         display: block;
-        width: 125px;
+        width: 115px;
         text-align: center;
         text-decoration: none;
         color: gray;
+    }
+
+    section.content#people .people-who-stay {
+        margin: 20px 0;
+        float: left;
+        width: 550px;
+    }
+
+    section.content#people #stay-form {
+        padding: 0;
+        width: 285px;
+        text-align: right;
+        margin: -45px 20px 0 500px;
+        position: absolute;
+    }
+
+    section.content#people #stay-form .submit {
+        background: #2ecc71;
+        border: 0;
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    section.content#people ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    section.content#people ul li {
+        list-style: none;
+        margin: 0;
+        padding-bottom: 0;
+        float: left;
+    }
+
+    section.content#people #stay-form .submit:active {
+        background: #27ae60;
     }
 
 footer {
@@ -241,7 +283,7 @@ footer {
     padding: 30px;
     background: white;
     color: gray;
-    border-top: 10px solid darkseagreen;
+    border-top: 10px solid #ecf0f1;
 }
 
 body#place-detail header {

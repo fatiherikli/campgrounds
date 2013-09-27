@@ -2,6 +2,7 @@
 import json
 from itertools import imap
 from django.contrib import messages
+from django.shortcuts import redirect
 
 from django.templatetags.static import static
 from django.views.generic import ListView, DetailView, CreateView
@@ -42,6 +43,20 @@ class CampgroundDetail(DetailView):
     template_name = "places/detail.html"
     model = Campground
     context_object_name = "place"
+
+    def post(self, request, slug):
+        if 'stay' in request.POST:
+            campground = self.get_object()
+            people = campground.people_who_stay
+            if request.user in people.all():
+                people.remove(request.user)
+                messages.info(request, 'Topluluktan ayrıldınız.')
+            else:
+                people.add(request.user)
+                messages.info(request, 'Topluluğa katıldınız.')
+
+            return redirect(campground)
+        return self.get(request, slug)
 
 
 class NewCampground(CreateView):
