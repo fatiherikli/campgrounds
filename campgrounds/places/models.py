@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.gis.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -7,8 +8,10 @@ from django.utils.encoding import smart_unicode
 from django.utils.text import slugify
 
 from markitup.fields import MarkupField
+
 from campgrounds.places.managers import ActiveManager
 from campgrounds.profiles.constants import NOTIFICATION_TYPE_APPROVAL
+from campgrounds.wall.models import Entry
 
 
 class Campground(models.Model):
@@ -58,6 +61,16 @@ class Campground(models.Model):
             return self.image.url
         except ValueError:
             return ""
+
+    def get_content_type(self):
+        """Returns the content type of this model"""
+        return ContentType.objects.get_for_model(Entry)
+
+    def wall_entries(self):
+        """Returns the wall of place"""
+        return Entry.objects.filter(
+            content_type=self.get_content_type(),
+            object_id=self.pk)
 
 
 class Feature(models.Model):

@@ -53,18 +53,35 @@
 <div class="people-who-stay">
     <h4>Burada Kalmış Olanlar</h4>
     <ul>
-        {% for user in place.people_who_stay.all %}
+        {% for profile in place.people_who_stay.all %}
         <li>
             <a class="profile" href="#">
-                <img src="{{ user.gravatar }}" alt=""/>
+                <img src="{{ profile.gravatar }}" alt=""/>
                 <br/>
-                {{ user.get_full_name }}
+                {{ profile.get_full_name }}
             </a>
         </li>
         {% empty %}
         <li>Henüz bu toplulukta kimse yok.</li>
         {% endfor %}
     </ul>
+</div>
+<div class="wall">
+    <h3>Duvar</h3>
+    {% if user in place.people_who_stay.all %}
+        <form action="{% url 'wall-detail' place.get_content_type.pk place.pk %}" method="post">
+            {% csrf_token %}
+            {{ submit_to_wall_form.as_p }}
+            <input type="submit" value="Gönder"/>
+        </form>
+    {% endif %}
+    {% for entry in place.wall_entries %}
+    <div class="wall-entry">
+        {{ entry }}
+    </div>
+    {% empty %}
+    <p>Henüz duvara hiçbir şey yazılmamış.</p>
+    {% endfor %}
 </div>
 </section>
 

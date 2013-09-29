@@ -10,6 +10,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from campgrounds.places.forms import NewCampgroundForm
 from campgrounds.places.mixins import JSONResponseMixin
 from campgrounds.places.models import Campground
+from campgrounds.wall.forms import SubmitToWallForm
 
 
 class CampgroundList(JSONResponseMixin, ListView):
@@ -57,6 +58,11 @@ class CampgroundDetail(DetailView):
 
             return redirect(campground)
         return self.get(request, slug)
+
+    def get_context_data(self, **kwargs):
+        return super(CampgroundDetail, self).get_context_data(
+            submit_to_wall_form=SubmitToWallForm(),
+            **kwargs)
 
 
 class NewCampground(CreateView):

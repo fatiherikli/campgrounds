@@ -12,6 +12,7 @@ urlpatterns = patterns('',
         template_name="detail.html"), name='home'),
     url(r'logout$', logout,  {'next_page': "/"}, name='logout'),
     url(r'^places/', include('campgrounds.places.urls')),
+    url(r'^wall/', include('campgrounds.wall.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('social_auth.urls')),
 )

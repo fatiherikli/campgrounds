@@ -126,6 +126,7 @@ INSTALLED_APPS = (
 
     'campgrounds.places',
     'campgrounds.profiles',
+    'campgrounds.wall',
 )
 
 AUTH_USER_MODEL = 'profiles.User'
