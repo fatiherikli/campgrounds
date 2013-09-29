@@ -24,20 +24,33 @@ campgrounds.MapView = Backbone.View.extend({
         });
 
         var info_window = this.build_info_window(
-            place, $(this.options.marker_template).html());
+            place, $(this.options.marker_template).html(), marker);
 
         google.maps.event.addListener(marker, 'click', function () {
-            window.location = place.get('url');
-            // info_window.open(this.map, marker);
+            info_window.open();
         }.bind(this));
 
         return marker;
     },
 
-    build_info_window: function (model, template) {
-        return new google.maps.InfoWindow({
-            content: _.template(template, model.toJSON()),
-            zIndex: 100
+    build_info_window: function (model, template, marker) {
+        var content = _.template(template, model.toJSON());
+        return new InfoBubble({
+          map: this.map,
+          content: content,
+          position: marker.getPosition(),
+          shadowStyle: 1,
+          padding: 0,
+          backgroundColor: 'rgb(57,57,57)',
+          borderRadius: 4,
+          arrowSize: 10,
+          borderWidth: 1,
+          borderColor: '#2c2c2c',
+          disableAutoPan: true,
+          hideCloseButton: true,
+          arrowPosition: 30,
+          backgroundClassName: 'phoney',
+          arrowStyle: 2
         });
     }
 });
