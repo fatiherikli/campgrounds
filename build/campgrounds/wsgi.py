@@ -14,6 +14,8 @@ framework.
 
 """
 import os
+import sys
+import site
 
 site.addsitedir(os.path.join(os.path.realpath(os.path.dirname(__file__)), "../../../../lib/python2.7/site-packages"))
 sys.path.append(os.path.join(os.path.realpath(os.path.dirname(__file__)), "../"))
